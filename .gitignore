@@ -11,6 +11,7 @@
 *.orig
 *.rej
 README-original
+.def.h
 
 
 # Linker output
