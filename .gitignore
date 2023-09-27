@@ -12,7 +12,7 @@
 *.rej
 README-original
 .def.h
-
+	dwm
 
 # Linker output
 *.ilk

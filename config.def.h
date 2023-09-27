@@ -62,12 +62,18 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 #define STATUSBAR "dwmblocks"
+#define TERMINAL "kitty"
+#define BROWSER "firefox"
+
+#include <X11/XF86keysym.h>
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *browser[] = {"firefox", NULL }; 
 static const char *browseralt[] = {"brave", NULL }; 
+static const char *maimpick[] = {"maimpick", NULL };
+static const char *maimfull[] = {"maimfull", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -75,6 +81,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,			XK_w,	   spawn, 	   {.v = browser } }, 
 	{ MODKEY|ShiftMask,		XK_w,	   spawn, 	   {.v = browseralt } }, 
+	{ MODKEY|ShiftMask,		XK_r,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, // ver se funciona
+	{ 0,				XK_Print,  spawn, 	   {.v = maimfull } },
+	{ ShiftMask,			XK_Print,  spawn, 	   {.v = maimpick } },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -98,7 +108,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 5  } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
