@@ -61,6 +61,7 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+/* constants */ 
 #define STATUSBAR "dwmblocks"
 #define TERMINAL "kitty"
 #define BROWSER "firefox"
@@ -72,19 +73,21 @@ static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *browser[] = {"firefox", NULL }; 
 static const char *browseralt[] = {"brave", NULL }; 
+static const char *rofi[] = {"rofi", "-show", "drun", NULL };
+/*
 static const char *maimpick[] = {"maimpick", NULL };
 static const char *maimfull[] = {"maimfull", NULL};
-
+*/ 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,			XK_w,	   spawn, 	   {.v = browser } }, 
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd  } },
+	{ MODKEY,			XK_w,	   spawn, 	   {.v = browser } },
 	{ MODKEY|ShiftMask,		XK_w,	   spawn, 	   {.v = browseralt } }, 
-	{ MODKEY|ShiftMask,		XK_r,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, // ver se funciona
-	{ 0,				XK_Print,  spawn, 	   {.v = maimfull } },
-	{ ShiftMask,			XK_Print,  spawn, 	   {.v = maimpick } },
-
+//	{ MODKEY|ShiftMask,		XK_r,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, // Funciona e não precisa declarar acima. 
+	{ 0,				XK_Print,  spawn, 	   {.v = (const char*[]) { "maimfull" } } },
+	{ ShiftMask,			XK_Print,  spawn, 	   {.v = (const char*[]) { "maimpick" } } },
+	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   {.v = rofi } }, 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
