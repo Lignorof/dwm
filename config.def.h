@@ -85,6 +85,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_w,	   spawn, 	   {.v = browser } },
 	{ MODKEY|ShiftMask,		XK_w,	   spawn, 	   {.v = browseralt } }, 
 //	{ MODKEY|ShiftMask,		XK_r,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, // Funciona e não precisa declarar acima. 
+	{ MODKEY, 			XK_d,	   spawn, 	   {.v = rofi } }, 
 	{ 0,				XK_Print,  spawn, 	   {.v = (const char*[]) { "maimfull" } } },
 	{ ShiftMask,			XK_Print,  spawn, 	   {.v = (const char*[]) { "maimpick" } } },
 	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   {.v = rofi } }, 
