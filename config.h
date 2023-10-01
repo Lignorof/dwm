@@ -74,21 +74,23 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *browser[] = {"firefox", NULL }; 
 static const char *browseralt[] = {"brave", NULL }; 
 static const char *rofi[] = {"rofi", "-show", "drun", NULL };
-/*
-static const char *maimpick[] = {"maimpick", NULL };
-static const char *maimfull[] = {"maimfull", NULL};
-*/ 
+
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd  } },
 	{ MODKEY,			XK_w,	   spawn, 	   {.v = browser } },
 	{ MODKEY|ShiftMask,		XK_w,	   spawn, 	   {.v = browseralt } }, 
-//	{ MODKEY|ShiftMask,		XK_r,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, // Funciona e não precisa declarar acima. 
-	{ MODKEY, 			XK_d,	   spawn, 	   {.v = rofi } }, 
+	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   {.v = rofi } }, 
+	{ MODKEY|ShiftMask,		XK_m,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, 
 	{ 0,				XK_Print,  spawn, 	   {.v = (const char*[]) { "maimfull" } } },
 	{ ShiftMask,			XK_Print,  spawn, 	   {.v = (const char*[]) { "maimpick" } } },
-	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   {.v = rofi } }, 
+	{ 0, XF86XK_AudioMute,		spawn,	   SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
+	{ 0, XF86XK_AudioRaiseVolume,	spawn,	   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
+	{ 0, XF86XK_AudioLowerVolume,	spawn,	   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
+	
+/* Window management */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -100,7 +102,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -112,7 +114,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 5  } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 5  } }, //TODO Fix to set default
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
