@@ -71,10 +71,9 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *browser[] = {"firefox", NULL }; 
-static const char *browseralt[] = {"brave", NULL }; 
+static const char *browser[] = {"thorium-browser", NULL }; //firefox, brave, thorium-browser, etc. 
+static const char *browseralt[] = {"firefox", NULL }; 
 static const char *rofi[] = {"rofi", "-show", "drun", NULL };
-
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -84,8 +83,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_w,	   spawn, 	   {.v = browseralt } }, 
 	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   {.v = rofi } }, 
 	{ MODKEY|ShiftMask,		XK_m,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, 
-	{ 0,				XK_Print,  spawn, 	   {.v = (const char*[]) { "maimfull" } } },
-	{ ShiftMask,			XK_Print,  spawn, 	   {.v = (const char*[]) { "maimpick" } } },
+	{ 0,				XK_Print,  spawn, 	   {.v = (const char*[]) { "maimfull", NULL } } },
+	{ ShiftMask,			XK_Print,  spawn, 	   {.v = (const char*[]) { "maimpick", NULL } } },
+	{ MODKEY,			XK_f,	   spawn,	   {.v = (const char*[]) { "pcmanfm", NULL } } },
 	{ 0, XF86XK_AudioMute,		spawn,	   SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn,	   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
 	{ 0, XF86XK_AudioLowerVolume,	spawn,	   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
