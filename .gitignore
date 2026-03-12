@@ -11,7 +11,7 @@
 *.orig
 *.rej
 README-original
-.def.h
+*.def.h
 dwm
 
 # Linker output
