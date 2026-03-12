@@ -73,20 +73,21 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *browser[] = {"librewolf", NULL }; //Default browser
-static const char *browseralt[] = {"firefox", NULL }; // Preferably browsers easily downloaded in package manager for backup. 
+static const char *browseralt[] = {"chromium", NULL }; // Preferably browsers easily downloaded in package manager for backup. 
 static const char *rofi[] = {"rofi", "-show", "drun", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd  } },
 	{ MODKEY,			XK_w,	   spawn, 	   {.v = browser } },
 	{ MODKEY|ShiftMask,		XK_w,	   spawn, 	   {.v = browseralt } }, 
-	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   {.v = rofi } }, 
+	{ MODKEY,        		XK_d,	   spawn,	   {.v = rofi } }, 
+	{ MODKEY|ControlMask,           XK_space,  spawn,          SHCMD("kb-selector") },
 	{ MODKEY|ShiftMask,		XK_m,	   spawn,	   {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, 
 	{ 0,				XK_Print,  spawn, 	   {.v = (const char*[]) { "maimfull", NULL } } },
 	{ ShiftMask,			XK_Print,  spawn, 	   {.v = (const char*[]) { "maimpick", NULL } } },
-	{ MODKEY,			XK_f,	   spawn,	   {.v = (const char*[]) { "pcmanfm", NULL } } },
+	{ MODKEY,			XK_e,	   spawn,	   {.v = (const char*[]) { "pcmanfm", NULL } } },
 	{ 0, XF86XK_AudioMute,		spawn,	   SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn,	   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+") },
 	{ 0, XF86XK_AudioLowerVolume,	spawn,	   SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-") },
